@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Publish/Subscribe Web Client
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="src/js/browserMqtt.js"></script>
+    <script src="src/js/index.js"></script>
+  </head>
+  <style>
+    body {
+      background-image: url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v.640-peipei-03-modernbg_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=aa6a23118aa56d90824b12d383b67411");
+      /* background-position: cover; */
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    
+
+  .label-before, .field input:focus + label::before, .field input:valid + label::before {
+    line-height: 20px;
+    font-size: 12px;
+    top: -10px;
+    background: #fff;
+    padding: 0 6px;
+    left: 9px;
+  }
+  
+
+  
+  .field {
+    position: relative;
+    margin-bottom: 15px;
+  }
+  .field label::before {
+    content: attr(title);
+    position: absolute;
+    top: 0;
+    left: 15px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #777;
+    transition: 300ms all;
+  }
+  .field input {
+    width: 100%;
+    line-height: 40px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #222;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  .field input:focus {
+    outline: 0;
+    border-color: blue;
+  }
+  .field input:valid + label::before {
+    content: attr(data-title);
+  }
+  .field input:focus + label::before {
+    color: blue;
+  }
+  </style>
+  <body>
+    <div class="jumbotron text-center bg-transparent mx-auto">
+      <h1 class="text-light">Publish/Subscribe Web Client
+      </h1>
+      <input type="text" name="" id="" class="connect form-control text-center mx-auto w-50" value="Connecting..." readonly>
+    </div>
+
+    <div class="container pb-4">
+
+      <div class="row ">
+        <div class="col-sm-6 col-md-4 mt-4">
+          <div class="card border-white">
+            <div class="card-header">Publish</div>
+            <div class="card-body">
+                <div class="field">
+                    <input type="text" required  class="" id="topic">
+                    <label title="Topic" data-title="Topic"></label>
+                </div>
+              
+                        <div class="field">
+                            <input type="text" required  class="" id="payload">
+                            <label title="Payload" data-title="Payload"></label>
+                        </div>
+
+              <div class="input-group">
+                <button id="publish" class="btn btn-info btn-sm">
+                  Publish <ion-icon name="send-outline"></ion-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!--</div>-->
+        </div>
+
+        <div class="col-sm-6 col-md-4 mt-4">
+          <div class="card border-white">
+            <div class="card-header">Subscribe</div>
+            <div class="card-body">
+              <!-- <p class="card-text">Some quick example text to build 
+                          on the card 
+                        title and make up the bulk of the card's content.</p>
+                     -->
+                     <div class="field">
+                        <input type="text" required  class="" id="subtopic">
+                        <label title="Topic" data-title="Topic"></label>
+                    </div>
+              <div class="input-group mt-4">
+                <span
+                  ><button id="subscribe" class="btn btn-info btn-sm">
+                    Subscribe
+                    <ion-icon
+                      name="chevron-forward-circle-outline"
+                    ></ion-icon></button
+                ></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--</div>-->
+
+        <div class="col-sm-6 col-md-4 mt-4">
+          <div class="card border-white">
+            <div class="card-header">
+              Message<button
+                class="btn btn-info btn-sm"
+                id="clear"
+                style="float: right"
+              >
+                Clear
+              </button>
+            </div>
+            <div class="card-body m-0">
+              <!-- <p class="card-text">Some quick example text to build 
+                         on the card 
+                        title and make up the bulk of the card's content.</p> -->
+              <table class="table table-borderless text-secondary" id="Table">
+                <thead>
+                  <tr>
+                    <th>Topic/Sender</th>
+                    <th>Payload</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!--</div>-->
+      </div>
+    </div>
+  </body>
+</html>
